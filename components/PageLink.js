@@ -4,7 +4,9 @@ import { useRouter } from 'next/router';
 import classnames from 'classnames';
 
 export default function PageLink({ href, title }) {
+  
   const router = useRouter();
+
   function getPageLink(pageName) {
     const isActive = router.pathname === pageName;
     return classnames(
@@ -17,7 +19,7 @@ export default function PageLink({ href, title }) {
   }
   return (
     <Link href={href}>
-      <button className={getPageLink(href)}>{title}</button>
+      <a className={getPageLink(href)}>{title}</a>
     </Link>
   );
 }
