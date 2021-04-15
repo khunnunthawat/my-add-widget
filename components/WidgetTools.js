@@ -5,24 +5,11 @@ import { BiBomb } from 'react-icons/bi';
 
 export default function WidgetTools() {
   return (
-    <div>
-      <BtnCard title='Add Widget'>
-        <RiAddCircleLine />
-      </BtnCard>
-      <BtnCard title='Clear all'>
-        <BiBomb />
-      </BtnCard>
+    <div className='pt-3'>
+      <div className='mb-4'>
+        <BtnCard text='Add Widget'></BtnCard>
+        <BtnCard text='Clear all'></BtnCard>
+      </div>
     </div>
   );
 }
-
-{/* <div class='pt-3'>
-  <div className='mb-4'>
-    <BtnCard title='Add Widget'>
-      <RiAddCircleLine />
-    </BtnCard>{' '}
-    <BtnCard title='Clear all'>
-      <BiBomb />{' '}
-    </BtnCard>
-  </div>
-</div> */}
