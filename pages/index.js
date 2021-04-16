@@ -1,13 +1,15 @@
 import Head from 'next/head';
-import WidgetContent from '../components/Widgets/WidgetContent';
+import CardNone from '../components/Layouts/CardNone';
+import WidgetContent from '../components/WidgetContent';
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Widget - Daytech Dashboard</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <WidgetContent />
+      <CardNone />
     </>
   );
 }

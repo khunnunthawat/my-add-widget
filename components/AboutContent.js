@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from '../components/Card';
+import Card from '../components/Layouts/Card';
 
 export default function AboutContent() {
   return (
-    <div>
+    <>
       <h2 className='text-xl'>About</h2>
       <div className='pt-3'>
         <Card title='I love <programming />'>
@@ -17,6 +17,6 @@ export default function AboutContent() {
           </p>
         </Card>
       </div>
-    </div>
+    </>
   );
 }

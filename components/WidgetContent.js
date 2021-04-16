@@ -1,5 +1,5 @@
 import React from 'react';
-import WidgetTools from './WidgetTools';
+import WidgetTools from './Widgets/WidgetTools';
 
 export default function WidgetContent() {
   return (
