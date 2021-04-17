@@ -64,8 +64,8 @@ export default function TimerTest() {
                 <BtnGo color='primary' btnName='Resume' />
               </button>
             )}
-            <button onClick={handleReset} disabled={!isActive}>
-              <BtnGo color='default' btnName='Reset' />
+            <button onClick={handleReset}>
+              <BtnGo color='primary' btnName='Reset' />
             </button>
           </>
         </div>

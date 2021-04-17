@@ -1,18 +1,17 @@
 import { useState } from 'react';
-import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';
-import { BiBomb } from 'react-icons/bi';
 import BtnGo from './BtnGo';
 import ModalCard from './Modals/ModalCard';
-import CardNone from '../components/Layouts/CardNone';
-import { TextHead } from './Modals/TextHead';
 import WidgetMenuCard from './Widgets/WidgetMenuCard';
-import FormInput from './Layouts/FormInput';
+// icon
+import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';
+import { BiBomb } from 'react-icons/bi';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
+import { TextHead } from './Modals/TextHead';
+import FormInput from './Layouts/FormInput';
 
-import JustSay from './Widgets/JustSay';
-import Timer from './Widgets/Timer';
-import Couter from './Widgets/Counter';
+import CardNone from '../components/Layouts/CardNone';
+
 
 export default function WidgetContent() {
   
@@ -62,9 +61,6 @@ export default function WidgetContent() {
           <BtnGo color='danger'>
             <BiBomb className={`${iconTool}`} /> Clear all
           </BtnGo>
-          <JustSay />
-          <Timer />
-          <Couter />
           {modalActiveMenu && (
             <ModalCard onCancel={handleCancel}>
               <TextHead>Add widget</TextHead>
