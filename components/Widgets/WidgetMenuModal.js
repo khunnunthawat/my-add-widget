@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { TextHead } from '../Modals/TextHead';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { RiIncreaseDecreaseLine } from 'react-icons/ri';
 import { IoTimerOutline } from 'react-icons/io5';
@@ -30,7 +29,7 @@ function WidgetModal() {
 
   return (
     <>
-      <TextHead>Add widget</TextHead>
+      <h2 class='text-xl'>Add widget</h2>
       <div className='flex flex-wrap text-center mt-1.5 -ml-1.5'>
         <WidgetMenuCard title='JustSay' onClick={handleClickJustsay}>
           <AiOutlineMessage className={`${iconClass}`} />
