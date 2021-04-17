@@ -11,6 +11,7 @@ import { TextHead } from './Modals/TextHead';
 import FormInput from './Layouts/FormInput';
 
 import CardNone from '../components/Layouts/CardNone';
+import JustSay from './Widgets/JustSay';
 
 
 export default function WidgetContent() {
@@ -43,7 +44,7 @@ export default function WidgetContent() {
     setModalActiveMenu(false);
     setModalActiveJustsay(false);
     setModalActiveCounter(false);
-    modalActiveTimer(false);
+    setModalActiveTimer(false);
     
   };
 
@@ -99,6 +100,7 @@ export default function WidgetContent() {
             </ModalCard>
           )}
         </div>
+        <JustSay />
       </div>
       <CardNone />
     </>
