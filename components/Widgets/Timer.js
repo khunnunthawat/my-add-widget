@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import Card from '../components/Card';
-import BtnGo from '../components/BtnGo';
+import Card from '../Layouts/Card';
+import BtnGo from '../BtnGo';
 
 export default function TimerTest() {
   const [timer, setTimer] = useState(0);
@@ -46,30 +46,28 @@ export default function TimerTest() {
   return (
     <>
       <Card title='Timer'>
-        <div className='md:break-inside'>
-          <div className='text-center'>
-            <div className='flex items-center justify-center mt-4 mb-6'>
-              <div className='text-6xl mx-7'>{formatTime(timer)}</div>
-            </div>
-            <>
-              {!isActive && !isPaused ? (
-                <button onClick={handleStart}>
-                  <BtnGo check={'blue'} btnName='Start' />
-                </button>
-              ) : isPaused ? (
-                <button onClick={handlePause}>
-                  <BtnGo check={'blue'} btnName='Pause' />
-                </button>
-              ) : (
-                <button onClick={handleResume}>
-                  <BtnGo check={'blue'} btnName='Resume' />
-                </button>
-              )}
-              <button onClick={handleReset} disabled={!isActive}>
-                <BtnGo check={'gray'} btnName='Reset' />
-              </button>
-            </>
+        <div className='text-center'>
+          <div className='flex items-center justify-center mt-4 mb-6'>
+            <div className='text-6xl mx-7'>{formatTime(timer)}</div>
           </div>
+          <>
+            {!isActive && !isPaused ? (
+              <button onClick={handleStart}>
+                <BtnGo color='primary' btnName='Start' />
+              </button>
+            ) : isPaused ? (
+              <button onClick={handlePause}>
+                <BtnGo color='primary' btnName='Pause' />
+              </button>
+            ) : (
+              <button onClick={handleResume}>
+                <BtnGo color='primary' btnName='Resume' />
+              </button>
+            )}
+            <button onClick={handleReset} disabled={!isActive}>
+              <BtnGo color='default' btnName='Reset' />
+            </button>
+          </>
         </div>
       </Card>
     </>

@@ -22,20 +22,18 @@ export default function Counter() {
 
   return (
     <Card title='Counter'>
-      <div className='md:break-inside pb-4'>
-        <div className='text-center'>
-          <div className='flex items-center justify-center mt-4 mb-6'>
-            {decrease}
-            <div className='text-6xl mx-7'>{count}</div>
-            <button
-              onClick={() => setCount(count + 1)}
-              className={`${countCss} + ${countBlue}`}
-            >
-              +
-            </button>
-          </div>
-          {clearCount}
+      <div className='text-center'>
+        <div className='flex items-center justify-center mt-4 mb-6'>
+          {decrease}
+          <div className='text-6xl mx-7'>{count}</div>
+          <button
+            onClick={() => setCount(count + 1)}
+            className={`${countCss} + ${countBlue}`}
+          >
+            +
+          </button>
         </div>
+        {clearCount}
       </div>
     </Card>
   );
