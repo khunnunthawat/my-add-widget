@@ -13,25 +13,19 @@ function WidgetModal() {
   const [modalActive, setModalActive] = useState(false);
 
   const handleClickJustsay = function () {
-    setModalActive1(true);
-    setModalActive(false);
+    setModalActive(true);
   };
 
   const handleClickCounter = function () {
-    setModalActive2(true);
-    setModalActive(false);
+    setModalActive(true);
   };
 
   const handleClickTimer = function () {
-    setModalActive3(true);
-    setModalActive(false);
+    setModalActive(true);
   };
 
   const handleCancel = function () {
     setModalActive(false);
-    setModalActive1(true);
-    setModalActive2(true);
-    setModalActive3(true);
   };
 
   return (
