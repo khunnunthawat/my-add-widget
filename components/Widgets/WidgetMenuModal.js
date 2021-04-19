@@ -4,7 +4,7 @@ import { RiIncreaseDecreaseLine } from 'react-icons/ri';
 import { IoTimerOutline } from 'react-icons/io5';
 import ModalCard from '../Modals/ModalCard';
 import WidgetMenuCard from './WidgetMenuCard';
-import FormInput from '../Layouts/FormInput';
+import FormInput from '../AddWidgets/FormJustSay';
 
 function WidgetModal() {
   let iconClass = 'mx-auto text-4xl';

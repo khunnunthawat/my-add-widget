@@ -8,10 +8,10 @@ import { BiBomb } from 'react-icons/bi';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { TextHead } from './Modals/TextHead';
-import FormInput from './Layouts/FormInput';
+import FormCounter from './AddWidgets/FormCounter';
+import FormJustSay from './AddWidgets/FormJustSay';
 
 import CardNone from '../components/Layouts/CardNone';
-import JustSay from './Widgets/JustSay';
 
 
 export default function WidgetContent() {
@@ -21,6 +21,9 @@ export default function WidgetContent() {
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
   const [modalActiveTimer, setModalActiveTimer] = useState(false);
 
+  const [titleJustsay, setTitleJustsay] = useState('');
+  const [listAllWidgets, setListAllWidgets] = useState([]);
+
   const handleClickMenu = function () {
     setModalActiveMenu(true);
   };
@@ -28,6 +31,7 @@ export default function WidgetContent() {
   const handleClickJustsay = function () {
     setModalActiveMenu(false);
     setModalActiveJustsay(true);
+    setTitleJustsay();
   };
 
   const handleClickCounter = function () {
@@ -80,18 +84,12 @@ export default function WidgetContent() {
           )}
           {modalActiveJustsay && (
             <ModalCard onCancel={handleCancel}>
-              <FormInput
-                title='Add JustSay'
-                placeholder='Enter text'
-              ></FormInput>
+              <FormJustSay></FormJustSay>
             </ModalCard>
           )}
           {modalActiveCounter && (
             <ModalCard onCancel={handleCancel}>
-              <FormInput
-                title='Add Counter'
-                placeholder='Enter the initial value'
-              ></FormInput>
+              <FormCounter></FormCounter>
             </ModalCard>
           )}
           {modalActiveTimer && (
@@ -100,9 +98,8 @@ export default function WidgetContent() {
             </ModalCard>
           )}
         </div>
-        <JustSay />
+        <CardNone />
       </div>
-      <CardNone />
     </>
   );
 }
