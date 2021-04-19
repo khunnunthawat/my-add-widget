@@ -1,5 +1,5 @@
 import React from 'react';
-import BtnGo from '../BtnGo';
+import Btn from '../Btn';
 
 const FormInput = () => {
   return (
@@ -14,7 +14,7 @@ const FormInput = () => {
           />
         </div>
         <div>
-          <BtnGo color='primary'> Add</BtnGo>
+          <Btn color='primary'> Add</Btn>
         </div>
       </form>
     </>

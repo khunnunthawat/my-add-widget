@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-const BtnGo = ({ color = 'default', disabled, onClick = () => {}, btnName, children }) => {
+const Btn = ({ color = 'default', disabled, onClick = () => {}, btnName, children }) => {
   const buttonClass = classnames(`text-white`, 'focus:outline-none rounded-md', {
     'font-normal text-blue-400': color === 'none',
     'px-4 py-1 bg-gray-500 hover:bg-gray-600': color === 'default' && !disabled,
@@ -21,4 +21,4 @@ const BtnGo = ({ color = 'default', disabled, onClick = () => {}, btnName, child
   );
 };
 
-export default BtnGo;
+export default Btn;

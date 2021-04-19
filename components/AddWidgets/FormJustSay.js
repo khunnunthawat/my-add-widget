@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import BtnGo from '../BtnGo';
+import Btn from '../Btn';
 
-const FormInput = ({
+export default function FormJustSay({
   setTitleJustsay,
   handleCancel,
   listAllWidgets,
   setListAllWidgets,
-  DateTime
-}) => {
-
+  DateTime,
+}) {
   const [inputText, setInputText] = useState('');
   const [checkError, setCheckError] = useState('');
 
@@ -17,11 +16,14 @@ const FormInput = ({
   };
 
   const onSubmit = (e) => {
+
     e.preventDefault();
-    if (e.target.title.value.length < 3) {
+
+    if (e.target.title.value.length !== '') {
       setCheckError('Please enter at least 3 characters.');
+      console.log(e.target.title.value.length);
     } else {
-      setTitleJustsay(e.target.title.value);
+      setTitleJustsay(e.target.title.value.length);
       handleCancel();
 
       let id;
@@ -39,12 +41,11 @@ const FormInput = ({
       };
       setListAllWidgets([...listAllWidgets, data]);
     }
-  }
-
+  };
   return (
     <>
       <h2 className='text-xl mb-2'>Add JustSay</h2>
-      <form className='flex' onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='flex'>
         <div className='flex-1 mr-1'>
           <input
             type='text'
@@ -53,13 +54,10 @@ const FormInput = ({
           />
         </div>
         <div>
-          <BtnGo color='primary'> Add</BtnGo>
+          <Btn color='primary'> Add</Btn>
         </div>
         <p className='text-red-600 text-xs mt-1'>{checkError}</p>
       </form>
     </>
   );
-};
-
-export default FormInput;
-
+}

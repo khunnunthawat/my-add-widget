@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../Layouts/Card';
-import BtnGo from '../BtnGo';
+import Btn from '../Btn';
 
 export default function Counter() {
   const [count, setCount] = useState(0);
@@ -13,10 +13,10 @@ export default function Counter() {
   let countGray = 'text-gray-300';
 
   if (count == 0) {
-    clearCount = <button><BtnGo check={'gray'} btnName='Reset' /></button>
+    clearCount = <button><Btn check={'gray'} btnName='Reset' /></button>
     decrease = <button className={`${countCss} + ${countGray}`}>-</button>;
   } else {
-    clearCount = <button onClick={ () => setCount(0)}><BtnGo check={'blue'} btnName='Reset' /></button>
+    clearCount = <button onClick={ () => setCount(0)}><Btn check={'blue'} btnName='Reset' /></button>
     decrease = <button onClick={ () => setCount(count - 1)} className={`${countCss} + ${countBlue}`}>-</button>
   }
 

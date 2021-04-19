@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Card from '../Layouts/Card';
-import BtnGo from '../BtnGo';
+import Btn from '../Btn';
 
 export default function TimerTest() {
   const [timer, setTimer] = useState(0);
@@ -53,19 +53,19 @@ export default function TimerTest() {
           <>
             {!isActive && !isPaused ? (
               <button onClick={handleStart}>
-                <BtnGo color='primary' btnName='Start' />
+                <Btn color='primary' btnName='Start' />
               </button>
             ) : isPaused ? (
               <button onClick={handlePause}>
-                <BtnGo color='primary' btnName='Pause' />
+                <Btn color='primary' btnName='Pause' />
               </button>
             ) : (
               <button onClick={handleResume}>
-                <BtnGo color='primary' btnName='Resume' />
+                <Btn color='primary' btnName='Resume' />
               </button>
             )}
             <button onClick={handleReset}>
-              <BtnGo color='primary' btnName='Reset' />
+              <Btn color='primary' btnName='Reset' />
             </button>
           </>
         </div>

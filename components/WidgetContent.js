@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import BtnGo from './BtnGo';
+import React, { useState } from 'react';
+import Btn from './Btn';
 import ModalCard from './Modals/ModalCard';
 import WidgetMenuCard from './Widgets/WidgetMenuCard';
 // icon
@@ -53,13 +53,9 @@ export default function WidgetContent() {
   let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
   let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
   let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-  let hms = new Intl.DateTimeFormat('en', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  }).format(d);
+  var n = d.toLocaleString([], { hour12: true });
 
-  const DateTime = `Added on ${mo} ${da}, ${ye}, ${hms}`;
+  let DateTime = `Added on ${mo} ${da},${ye}, ${n}`;
 
   const handleJustsay = function () {
     if (listAllWidgets.length > 0) {
@@ -75,9 +71,9 @@ export default function WidgetContent() {
                 <p className='text-4xl mb-2'>No widgets at all</p>
                 <p>
                   Click{' '}
-                  <BtnGo color='none' onClick={handleClickMenu}>
+                  <Btn color='none' onClick={handleClickMenu}>
                     HERE
-                  </BtnGo>{' '}
+                  </Btn>{' '}
                   to add a new one
                 </p>
               </div>
@@ -96,54 +92,51 @@ export default function WidgetContent() {
       <h2 className='text-xl'>Widgets</h2>
       <div className='pt-3'>
         <div className='mb-4'>
-          <BtnGo color='primary' onClick={handleClickMenu}>
+          <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
-          </BtnGo>{' '}
-          <BtnGo color='danger'>
+          </Btn>{' '}
+          <Btn color='danger'>
             <BiBomb className={`${iconTool}`} /> Clear all
-          </BtnGo>
+          </Btn>
         </div>
         <>{handleJustsay()}</>
 
-          {modalActiveMenu && (
-            <ModalCard onCancel={handleCancel}>
-              <TextHead>Add widget</TextHead>
-              <div className='flex flex-wrap text-center mt-1.5 -ml-1.5'>
-                <WidgetMenuCard title='JustSay' onClick={handleClickJustsay}>
-                  <AiOutlineMessage className={`${iconClass}`} />
-                </WidgetMenuCard>
-                <WidgetMenuCard title='Counter' onClick={handleClickCounter}>
-                  <RiIncreaseDecreaseLine className={`${iconClass}`} />
-                </WidgetMenuCard>
-                <WidgetMenuCard title='Timer' onClick={handleClickTimer}>
-                  <IoTimerOutline className={`${iconClass}`} />
-                </WidgetMenuCard>
-              </div>
-            </ModalCard>
-          )}
-          {modalActiveJustsay && (
-            <ModalCard onCancel={handleCancel}>
-              <FormJustSay
-                setTitleJustsay={setTitleJustsay}
-                handleClickJustsay={handleClickJustsay}
-                handleCancel={handleCancel}
-                listAllWidgets={listAllWidgets}
-                setListAllWidgets={setListAllWidgets}
-                DateTime={DateTime}
-              />
-            </ModalCard>
-          )}
-          {modalActiveCounter && (
-            <ModalCard onCancel={handleCancel}>
-              <FormCounter></FormCounter>
-            </ModalCard>
-          )}
-          {modalActiveTimer && (
-            <ModalCard onCancel={handleCancel}>
-              Timer
-            </ModalCard>
-          )}
-        
+        {modalActiveMenu && (
+          <ModalCard onCancel={handleCancel}>
+            <TextHead>Add widget</TextHead>
+            <div className='flex flex-wrap text-center mt-1.5 -ml-1.5'>
+              <WidgetMenuCard title='JustSay' onClick={handleClickJustsay}>
+                <AiOutlineMessage className={`${iconClass}`} />
+              </WidgetMenuCard>
+              <WidgetMenuCard title='Counter' onClick={handleClickCounter}>
+                <RiIncreaseDecreaseLine className={`${iconClass}`} />
+              </WidgetMenuCard>
+              <WidgetMenuCard title='Timer' onClick={handleClickTimer}>
+                <IoTimerOutline className={`${iconClass}`} />
+              </WidgetMenuCard>
+            </div>
+          </ModalCard>
+        )}
+        {modalActiveJustsay && (
+          <ModalCard onCancel={handleCancel}>
+            <FormJustSay
+              setTitleJustsay={setTitleJustsay}
+              handleClickJustsay={handleClickJustsay}
+              handleCancel={handleCancel}
+              listAllWidgets={listAllWidgets}
+              setListAllWidgets={setListAllWidgets}
+              DateTime={DateTime}
+            />
+          </ModalCard>
+        )}
+        {modalActiveCounter && (
+          <ModalCard onCancel={handleCancel}>
+            <FormCounter></FormCounter>
+          </ModalCard>
+        )}
+        {modalActiveTimer && (
+          <ModalCard onCancel={handleCancel}>Timer</ModalCard>
+        )}
       </div>
     </>
   );
