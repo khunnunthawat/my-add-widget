@@ -55,9 +55,9 @@ export default function WidgetContent() {
   let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
   var n = d.toLocaleString([], { hour12: true });
 
-  let DateTime = `Added on ${mo} ${da},${ye}, ${n}`;
+  let DateTime = `Added on ${n}`;
 
-  const handleJustsay = function () {
+  const handleTitleJustsay = function () {
     if (listAllWidgets.length > 0) {
       console.log(listAllWidgets);
       return <JustSay title={titleJustsay} listAllWidgets={listAllWidgets} />;
@@ -99,7 +99,7 @@ export default function WidgetContent() {
             <BiBomb className={`${iconTool}`} /> Clear all
           </Btn>
         </div>
-        <>{handleJustsay()}</>
+        <>{handleTitleJustsay()}</>
 
         {modalActiveMenu && (
           <ModalCard onCancel={handleCancel}>
@@ -121,7 +121,7 @@ export default function WidgetContent() {
           <ModalCard onCancel={handleCancel}>
             <FormJustSay
               setTitleJustsay={setTitleJustsay}
-              handleClickJustsay={handleClickJustsay}
+              handleTitleJustsay={handleTitleJustsay}
               handleCancel={handleCancel}
               listAllWidgets={listAllWidgets}
               setListAllWidgets={setListAllWidgets}

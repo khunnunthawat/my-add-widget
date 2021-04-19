@@ -16,16 +16,12 @@ export default function FormJustSay({
   };
 
   const onSubmit = (e) => {
-
     e.preventDefault();
-
-    if (e.target.title.value !== '') {
-      if (e.target.title.value.length <= 3) {
-        setCheckError('Please enter at least 3 characters.');
-      }
+    if (e.target.title.value.length < 3) {
+      setCheckError('Please enter at least 3 characters.');
       console.log(e.target.title.value.length);
     } else {
-      setTitleJustsay(e.target.title.value.length);
+      setTitleJustsay(e.target.title.value);
       handleCancel();
 
       let id;
@@ -33,17 +29,47 @@ export default function FormJustSay({
       if (listAllWidgets.length == 0) {
         id = 1;
       } else {
-        const lastArray = listAllWidgets.slice(-1).pop();
+        const lastArray = listAllWidgets.slice(-1).pop(); // .slice(-1).pop() เลือก array ตัวสุดท้ายมาให้
         id = lastArray.id + 1;
       }
       const data = {
-        value: e.target.title,
+        value: e.target.title.value,
         id: id,
         date: DateTime,
       };
       setListAllWidgets([...listAllWidgets, data]);
     }
   };
+
+  // const onSubmit = (e) => {
+
+  //   e.preventDefault();
+
+  //   if (e.target.title.value !== '') {
+  //     if (e.target.title.value.length <= 3) {
+  //       setCheckError('Please enter at least 3 characters.');
+  //     }
+  //     console.log(e.target.title.value.length);
+  //   } else {
+  //     setTitleJustsay(e.target.title.value.length);
+  //     handleCancel();
+
+  //     let id;
+
+  //     if (listAllWidgets.length == 0) {
+  //       id = 1;
+  //     } else {
+  //       const lastArray = listAllWidgets.slice(-1).pop();
+  //       id = lastArray.id + 1;
+  //     }
+  //     const data = {
+  //       value: e.target.title,
+  //       id: id,
+  //       date: DateTime,
+  //     };
+  //     setListAllWidgets([...listAllWidgets, data]);
+  //   }
+  // };
   return (
     <>
       <h2 className='text-xl mb-2'>Add JustSay</h2>

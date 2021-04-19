@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Layouts/Card';
 
-export default function JustSay({ listAllWidgets }) {
+export default function JustSay({ title, listAllWidgets }) {
   return listAllWidgets.map((list, index) => {
     console.log(list);
     return (

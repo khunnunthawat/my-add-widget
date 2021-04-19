@@ -1,5 +1,4 @@
 import React from 'react';
-import DateTime from './DateTime';
 
 export default function WidgetsCard({ title, children }) {
   return (
@@ -8,7 +7,6 @@ export default function WidgetsCard({ title, children }) {
         <div className='p-5 border-1 bg-white rounded-2xl'>
           <h2 className='text-lg font-bold text-gray-400 mb-1.5'>{title}</h2>
           {children}
-          <DateTime />
         </div>
       </div>
     </div>
