@@ -29,7 +29,7 @@ function WidgetModal() {
 
   return (
     <>
-      <h2 class='text-xl'>Add widget</h2>
+      <h2 className='text-xl'>Add widget</h2>
       <div className='flex flex-wrap text-center mt-1.5 -ml-1.5'>
         <WidgetMenuCard title='JustSay' onClick={handleClickJustsay}>
           <AiOutlineMessage className={`${iconClass}`} />

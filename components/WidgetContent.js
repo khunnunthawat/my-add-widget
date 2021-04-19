@@ -11,11 +11,9 @@ import { TextHead } from './Modals/TextHead';
 import FormCounter from './AddWidgets/FormCounter';
 import FormJustSay from './AddWidgets/FormJustSay';
 
-import CardNone from '../components/Layouts/CardNone';
-
+import JustSay from './Widgets/JustSay';
 
 export default function WidgetContent() {
-  
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
@@ -49,7 +47,45 @@ export default function WidgetContent() {
     setModalActiveJustsay(false);
     setModalActiveCounter(false);
     setModalActiveTimer(false);
-    
+  };
+
+  let d = new Date();
+  let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
+  let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+  let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  let hms = new Intl.DateTimeFormat('en', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).format(d);
+
+  const DateTime = `Added on ${mo} ${da}, ${ye}, ${hms}`;
+
+  const handleJustsay = function () {
+    if (listAllWidgets.length > 0) {
+      console.log(listAllWidgets);
+      return <JustSay title={titleJustsay} listAllWidgets={listAllWidgets} />;
+    } else {
+      return (
+        <div className='md:flex md:flex-wrap md:-mr-4'>
+          <div className='md:inner md:w-1/2 pb-4 md:pr-4'>
+            <div className='p-5 border-1 bg-white rounded-2xl'>
+              <h2 className='text-lg font-bold text-gray-400 mb-1.5' />
+              <div className='text-center text-gray-400 my-8 font-light'>
+                <p className='text-4xl mb-2'>No widgets at all</p>
+                <p>
+                  Click{' '}
+                  <BtnGo color='none' onClick={handleClickMenu}>
+                    HERE
+                  </BtnGo>{' '}
+                  to add a new one
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
   };
 
   let iconTool = 'inline-block text-xl relative -top-0.5';
@@ -66,6 +102,9 @@ export default function WidgetContent() {
           <BtnGo color='danger'>
             <BiBomb className={`${iconTool}`} /> Clear all
           </BtnGo>
+        </div>
+        <>{handleJustsay()}</>
+
           {modalActiveMenu && (
             <ModalCard onCancel={handleCancel}>
               <TextHead>Add widget</TextHead>
@@ -84,7 +123,14 @@ export default function WidgetContent() {
           )}
           {modalActiveJustsay && (
             <ModalCard onCancel={handleCancel}>
-              <FormJustSay></FormJustSay>
+              <FormJustSay
+                setTitleJustsay={setTitleJustsay}
+                handleClickJustsay={handleClickJustsay}
+                handleCancel={handleCancel}
+                listAllWidgets={listAllWidgets}
+                setListAllWidgets={setListAllWidgets}
+                DateTime={DateTime}
+              />
             </ModalCard>
           )}
           {modalActiveCounter && (
@@ -94,11 +140,10 @@ export default function WidgetContent() {
           )}
           {modalActiveTimer && (
             <ModalCard onCancel={handleCancel}>
-              <FormInput title='Add Timer' placeholder='00:00'></FormInput>
+              Timer
             </ModalCard>
           )}
-        </div>
-        <CardNone />
+        
       </div>
     </>
   );

@@ -1,3 +1,3 @@
 export const TextHead = ({ children }) => (
-  <h2 class='text-xl'>{children}</h2>
+  <h2 className='text-xl'>{children}</h2>
 );
