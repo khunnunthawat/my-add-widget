@@ -19,8 +19,10 @@ export default function FormJustSay({
 
     e.preventDefault();
 
-    if (e.target.title.value.length !== '') {
-      setCheckError('Please enter at least 3 characters.');
+    if (e.target.title.value !== '') {
+      if (e.target.title.value.length <= 3) {
+        setCheckError('Please enter at least 3 characters.');
+      }
       console.log(e.target.title.value.length);
     } else {
       setTitleJustsay(e.target.title.value.length);
@@ -48,6 +50,7 @@ export default function FormJustSay({
       <form onSubmit={onSubmit} className='flex'>
         <div className='flex-1 mr-1'>
           <input
+            name='title'
             type='text'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'
             placeholder='Enter text'
@@ -56,8 +59,8 @@ export default function FormJustSay({
         <div>
           <Btn color='primary'> Add</Btn>
         </div>
-        <p className='text-red-600 text-xs mt-1'>{checkError}</p>
       </form>
+      <div className='text-red-600 text-xs mt-1'>{checkError}</div>
     </>
   );
 }
