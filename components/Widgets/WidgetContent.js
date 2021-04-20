@@ -75,25 +75,6 @@ export default function WidgetContent() {
     setModalActiveCounter(false);
   };
 
-  const clearWidgets = () => {
-    // clear all history
-    setListAllWidgets([]);
-  };
-
-  let clearWidgetsTool = (
-    <Btn onClick={clearWidgets} disabled='disabled'>
-      <BiBomb className={`${iconTool}`} /> Clear all
-    </Btn>
-  );
-
-  if (listAllWidgets.length > 0) {
-    clearWidgetsTool = (
-      <Btn onClick={clearWidgets} color='danger'>
-        <BiBomb className={`${iconTool}`} /> Clear all
-      </Btn>
-    );
-  }
-
   // DateTimeNow
   let d = new Date();
   let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
@@ -139,6 +120,11 @@ export default function WidgetContent() {
   let iconClass = 'mx-auto text-4xl';
   let flexClass = 'md:flex md:flex-wrap md:-mr-4';
 
+  const clearWidgets = () => {
+    // clear all history
+    setListAllWidgets([]);
+  };
+
   return (
     <>
       <h2 className='text-xl'>Widgets</h2>
@@ -153,8 +139,6 @@ export default function WidgetContent() {
           {/* {clearWidgetsTool} */}
         </div>
         <div className={`${flexClass}`}>{handleAddWidgets()}</div>
-
-        {/* <>{handleCounter()}</> */}
 
         {modalActiveMenu && (
           <ModalCard onCancel={handleCancel}>
