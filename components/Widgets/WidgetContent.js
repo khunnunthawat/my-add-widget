@@ -75,6 +75,25 @@ export default function WidgetContent() {
     setModalActiveCounter(false);
   };
 
+  const clearWidgets = () => {
+    // clear all history
+    setListAllWidgets([]);
+  };
+
+  let clearWidgetsTool = (
+    <Btn onClick={clearWidgets} disabled='disabled'>
+      <BiBomb className={`${iconTool}`} /> Clear all
+    </Btn>
+  );
+
+  if (listAllWidgets.length > 0) {
+    clearWidgetsTool = (
+      <Btn onClick={clearWidgets} color='danger'>
+        <BiBomb className={`${iconTool}`} /> Clear all
+      </Btn>
+    );
+  }
+
   // DateTimeNow
   let d = new Date();
   let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
@@ -128,9 +147,10 @@ export default function WidgetContent() {
           <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
           </Btn>{' '}
-          <Btn color='danger'>
+          <Btn onClick={clearWidgets} color='danger'>
             <BiBomb className={`${iconTool}`} /> Clear all
           </Btn>
+          {/* {clearWidgetsTool} */}
         </div>
         <div className={`${flexClass}`}>{handleAddWidgets()}</div>
 

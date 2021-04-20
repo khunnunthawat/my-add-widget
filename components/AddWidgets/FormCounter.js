@@ -14,7 +14,7 @@ export default function FormCounter({
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (Number(e.target.title.value) < 0) {
+    if (Number(e.target.title.value) < 1) {
       setCheckError('Please enter at least 0.');
       // console.log(e.target.count.value.length);
     } else {
