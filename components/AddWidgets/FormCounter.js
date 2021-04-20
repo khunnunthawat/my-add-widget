@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 
 export default function FormCounter({
+  handleAddWidgets,
   setCouter,
   handleCancel,
   listAllWidgets,
@@ -13,14 +14,11 @@ export default function FormCounter({
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // setCounter(e.target.count.value);
-    // handleCancel();
-
-    if (e.target.count.value < 0) {
+    if (Number(e.target.title.value) < 0) {
       setCheckError('Please enter at least 0.');
       // console.log(e.target.count.value.length);
     } else {
-      setCouter(e.target.count.value);
+      setCouter(Number(e.target.title.value));
       handleCancel();
 
       let id;
@@ -33,12 +31,12 @@ export default function FormCounter({
       }
 
       const data = {
-        value: Number(e.target.count.value),
+        value: Number(e.target.title.value),
         id: id,
         date: DateTime,
-        type: 'counter'
+        type: 'counter',
       };
-      console.log('value = ', data.value);
+      // console.log('value = ', data.value);
       setListAllWidgets([...listAllWidgets, data]);
     }
   };
@@ -49,7 +47,7 @@ export default function FormCounter({
       <form onSubmit={onSubmit} className='flex'>
         <div className='flex-1 mr-1'>
           <input
-            name='count'
+            name='title'
             type='number'
             pattern='[0-9]'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'

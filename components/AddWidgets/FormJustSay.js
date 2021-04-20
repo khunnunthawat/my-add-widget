@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 
 export default function FormJustSay({
+  handleAddWidgets,
   setTitleJustsay,
   handleCancel,
   listAllWidgets,
@@ -12,6 +13,7 @@ export default function FormJustSay({
 
   const onSubmit = (e) => {
     e.preventDefault();
+    
     if (e.target.title.value.trim().length < 3) {
       setCheckError('Please enter at least 3 characters.');
       // console.log(e.target.title.value.length);

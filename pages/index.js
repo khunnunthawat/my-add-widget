@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import WidgetContent from '../components/WidgetContent';
+import WidgetContent from '../components/Widgets/WidgetContent';
 export default function Home() {
   return (
     <>

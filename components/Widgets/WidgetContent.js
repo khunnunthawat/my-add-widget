@@ -1,32 +1,31 @@
 import React, { useState } from 'react';
-import Btn from './Btn';
-import ModalCard from './Modals/ModalCard';
-import WidgetMenuCard from './Widgets/WidgetMenuCard';
+import Btn from '../Btn';
+import ModalCard from '../Modals/ModalCard';
+import WidgetMenuCard from './WidgetMenuCard';
 // icon
 import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';
 import { BiBomb } from 'react-icons/bi';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
-import { TextHead } from './Modals/TextHead';
+import { TextHead } from '../Modals/TextHead';
 
 // Form_Input
-import FormCounter from './AddWidgets/FormCounter';
-import FormJustSay from './AddWidgets/FormJustSay';
+import FormCounter from '../AddWidgets/FormCounter';
+import FormJustSay from '../AddWidgets/FormJustSay';
 
 // Layout
-import Card from './Layouts/Card';
-import JustSay from './Widgets/JustSay';
-import Counter from './Widgets/Counter';
-import Timer from './Widgets/Timer';
+import Card from '../Layouts/Card';
+import JustSay from './JustSay';
+import Counter from './Counter';
+import Timer from './Timer';
 
 export default function WidgetContent() {
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
-  const [modalActiveTimer, setModalActiveTimer] = useState(false);
 
   const [titleJustsay, setTitleJustsay] = useState('');
-  const [addCounter, setCouter] = useState('');
+  const [counter, setCouter] = useState('');
   const [timer, setTimer] = useState('');
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
@@ -48,15 +47,32 @@ export default function WidgetContent() {
 
   const handleClickTimer = function () {
     setModalActiveMenu(false);
-    setModalActiveTimer(true);
     setTimer();
+    handleCancel();
+
+    let id;
+    
+    if (listAllWidgets.length == 0) {
+      id = 1;
+    } else {
+      const lastArray = listAllWidgets.slice(-1).pop();
+      id = lastArray.id + 1;
+    }
+
+    const data = {
+      value: '',
+      id: id,
+      date: DateTime,
+      type: 'timer'
+    };
+    
+    setListAllWidgets([...listAllWidgets, data]);
   };
 
   const handleCancel = function () {
     setModalActiveMenu(false);
     setModalActiveJustsay(false);
     setModalActiveCounter(false);
-    setModalActiveTimer(false);
   };
 
   // DateTimeNow
@@ -74,15 +90,9 @@ export default function WidgetContent() {
       // console.log(listAllWidgets);
       return listAllWidgets.map((list, index) => {
         if (list.type === 'justSay') {
-          return (
-            <JustSay
-              key={index}
-              title={titleJustsay}
-              list={list}
-            />
-          );
+          return <JustSay key={index} title={titleJustsay} list={list} />;
         } else if (list.type === 'counter') {
-          return <Counter key={index} title={addCounter} list={list} />;
+          return <Counter key={index} title={counter} list={list} />;
         } else if (list.type === 'timer') {
           return <Timer key={index} title={timer} list={list} />;
         }
@@ -122,9 +132,7 @@ export default function WidgetContent() {
             <BiBomb className={`${iconTool}`} /> Clear all
           </Btn>
         </div>
-        <div className={`${flexClass}`}>
-          <>{handleAddWidgets()}</>
-        </div>
+        <div className={`${flexClass}`}>{handleAddWidgets()}</div>
 
         {/* <>{handleCounter()}</> */}
 
@@ -148,6 +156,7 @@ export default function WidgetContent() {
         {modalActiveJustsay && (
           <ModalCard onCancel={handleCancel}>
             <FormJustSay
+              handleAddWidgets={handleAddWidgets}
               setTitleJustsay={setTitleJustsay}
               handleCancel={handleCancel}
               listAllWidgets={listAllWidgets}
@@ -160,6 +169,7 @@ export default function WidgetContent() {
         {modalActiveCounter && (
           <ModalCard onCancel={handleCancel}>
             <FormCounter
+              handleAddWidgets={handleAddWidgets}
               setCouter={setCouter}
               handleCancel={handleCancel}
               listAllWidgets={listAllWidgets}
@@ -168,19 +178,6 @@ export default function WidgetContent() {
             />
           </ModalCard>
         )}
-        {/* Modal_Timer */}
-        {modalActiveTimer && (
-          <ModalCard onCancel={handleCancel}>
-            <Timer
-              setTimer={setTimer}
-              handleCancel={handleCancel}
-              listAllWidgets={listAllWidgets}
-              setListAllWidgets={setListAllWidgets}
-              DateTime={DateTime}
-            />
-          </ModalCard>
-        )}
-        {handleAddWidgets}
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Card from '../Layouts/Card';
 import Btn from '../Btn';
 
-export default function Counter(title, list, index) {
+export default function Counter({ title, list, index }) {
   const [count, setCount] = useState(list.value);
 
   let clearCount;
@@ -21,8 +21,8 @@ export default function Counter(title, list, index) {
     clearCount = (
       <Btn
         onClick={handleClick}
-        // className={`${countGray}`}
         disabled={disabled}
+        color='default'
         btnName='Set zero'
       />
     );
@@ -32,7 +32,7 @@ export default function Counter(title, list, index) {
       <Btn
         onClick={handleClick}
         disabled={!disabled}
-        color='default'
+        color='primary'
         btnName='Set zero'
       />
     );
@@ -46,7 +46,7 @@ export default function Counter(title, list, index) {
     );
   }
 
-  // list.value = count;
+  list.value = count;
   console.log(list.value);
 
   return (
