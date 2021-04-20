@@ -8,10 +8,16 @@ import { BiBomb } from 'react-icons/bi';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { TextHead } from './Modals/TextHead';
+
+// Form_Input
 import FormCounter from './AddWidgets/FormCounter';
 import FormJustSay from './AddWidgets/FormJustSay';
 
+// Layout
+import Card from './Layouts/Card';
 import JustSay from './Widgets/JustSay';
+import Counter from './Widgets/Counter';
+import Timer from './Widgets/Timer';
 
 export default function WidgetContent() {
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
@@ -21,6 +27,7 @@ export default function WidgetContent() {
 
   const [titleJustsay, setTitleJustsay] = useState('');
   const [addCounter, setCouter] = useState('');
+  const [timer, setTimer] = useState('');
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
   const handleClickMenu = function () {
@@ -42,6 +49,7 @@ export default function WidgetContent() {
   const handleClickTimer = function () {
     setModalActiveMenu(false);
     setModalActiveTimer(true);
+    setTimer();
   };
 
   const handleCancel = function () {
@@ -51,6 +59,7 @@ export default function WidgetContent() {
     setModalActiveTimer(false);
   };
 
+  // DateTimeNow
   let d = new Date();
   let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
   let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
@@ -59,42 +68,47 @@ export default function WidgetContent() {
 
   let DateTime = `Added on ${n}`;
 
-  const handleTitleJustsay = function () {
+  // handleAddWidgets
+  const handleAddWidgets = function () {
     if (listAllWidgets.length > 0) {
-      console.log(listAllWidgets);
-      return <JustSay title={titleJustsay} listAllWidgets={listAllWidgets} />;
+      // console.log(listAllWidgets);
+      return listAllWidgets.map((list, index) => {
+        if (list.type === 'justSay') {
+          return (
+            <JustSay
+              key={index}
+              title={titleJustsay}
+              list={list}
+            />
+          );
+        } else if (list.type === 'counter') {
+          return <Counter key={index} title={addCounter} list={list} />;
+        } else if (list.type === 'timer') {
+          return <Timer key={index} title={timer} list={list} />;
+        }
+      });
     } else {
       return (
-        <div className='md:flex md:flex-wrap md:-mr-4'>
-          <div className='md:inner md:w-1/2 pb-4 md:pr-4'>
-            <div className='p-5 border-1 bg-white rounded-2xl'>
-              <h2 className='text-lg font-bold text-gray-400 mb-1.5' />
-              <div className='text-center text-gray-400 my-8 font-light'>
-                <p className='text-4xl mb-2'>No widgets at all</p>
-                <p>
-                  Click{' '}
-                  <Btn color='none' onClick={handleClickMenu}>
-                    HERE
-                  </Btn>{' '}
-                  to add a new one
-                </p>
-              </div>
-            </div>
+        <Card>
+          <div className='text-center text-gray-400 my-8 font-light'>
+            <p className='text-4xl mb-2'>No widgets at all</p>
+            <p>
+              Click{' '}
+              <Btn color='none' onClick={handleClickMenu}>
+                HERE
+              </Btn>{' '}
+              to add a new one
+            </p>
           </div>
-        </div>
+        </Card>
       );
     }
   };
 
-  // const handleCounter = function () {
-  //   if (listAllWidgets.length > 0) {
-  //     console.log(listAllWidgets);
-  //     return <Counter title={addCounter} listAllWidgets={listAllWidgets} />;
-  //   }
-  // };
-
+  // CSS icon
   let iconTool = 'inline-block text-xl relative -top-0.5';
   let iconClass = 'mx-auto text-4xl';
+  let flexClass = 'md:flex md:flex-wrap md:-mr-4';
 
   return (
     <>
@@ -108,7 +122,10 @@ export default function WidgetContent() {
             <BiBomb className={`${iconTool}`} /> Clear all
           </Btn>
         </div>
-        <>{handleTitleJustsay()}</>
+        <div className={`${flexClass}`}>
+          <>{handleAddWidgets()}</>
+        </div>
+
         {/* <>{handleCounter()}</> */}
 
         {modalActiveMenu && (
@@ -127,11 +144,11 @@ export default function WidgetContent() {
             </div>
           </ModalCard>
         )}
+        {/* Modal_Justsay */}
         {modalActiveJustsay && (
           <ModalCard onCancel={handleCancel}>
             <FormJustSay
               setTitleJustsay={setTitleJustsay}
-              handleTitleJustsay={handleTitleJustsay}
               handleCancel={handleCancel}
               listAllWidgets={listAllWidgets}
               setListAllWidgets={setListAllWidgets}
@@ -139,11 +156,11 @@ export default function WidgetContent() {
             />
           </ModalCard>
         )}
+        {/* Modal_Counter */}
         {modalActiveCounter && (
           <ModalCard onCancel={handleCancel}>
             <FormCounter
               setCouter={setCouter}
-              handleCounter={handleCounter}
               handleCancel={handleCancel}
               listAllWidgets={listAllWidgets}
               setListAllWidgets={setListAllWidgets}
@@ -151,9 +168,19 @@ export default function WidgetContent() {
             />
           </ModalCard>
         )}
+        {/* Modal_Timer */}
         {modalActiveTimer && (
-          <ModalCard onCancel={handleCancel}>Timer</ModalCard>
+          <ModalCard onCancel={handleCancel}>
+            <Timer
+              setTimer={setTimer}
+              handleCancel={handleCancel}
+              listAllWidgets={listAllWidgets}
+              setListAllWidgets={setListAllWidgets}
+              DateTime={DateTime}
+            />
+          </ModalCard>
         )}
+        {handleAddWidgets}
       </div>
     </>
   );

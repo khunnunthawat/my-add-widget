@@ -6,7 +6,7 @@ export default function FormJustSay({
   handleCancel,
   listAllWidgets,
   setListAllWidgets,
-  DateTime,
+  DateTime
 }) {
   const [checkError, setCheckError] = useState('');
 
@@ -14,9 +14,9 @@ export default function FormJustSay({
     e.preventDefault();
     if (e.target.title.value.trim().length < 3) {
       setCheckError('Please enter at least 3 characters.');
-      console.log(e.target.title.value.length);
+      // console.log(e.target.title.value.length);
     } else {
-      setTitleJustsay(e.target.title.value);
+      setTitleJustsay(e.target.title.value.trim());
       handleCancel();
 
       let id;
@@ -32,6 +32,7 @@ export default function FormJustSay({
         value: e.target.title.value.trim(),
         id: id,
         date: DateTime,
+        type: 'justSay'
       };
       setListAllWidgets([...listAllWidgets, data]);
     }
