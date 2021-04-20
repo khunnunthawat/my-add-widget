@@ -12,7 +12,7 @@ export default function FormJustSay({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (e.target.title.value.length < 3) {
+    if (e.target.title.value.trim().length < 3) {
       setCheckError('Please enter at least 3 characters.');
       console.log(e.target.title.value.length);
     } else {
@@ -27,8 +27,9 @@ export default function FormJustSay({
         const lastArray = listAllWidgets.slice(-1).pop();
         id = lastArray.id + 1;
       }
+
       const data = {
-        value: e.target.title.value,
+        value: e.target.title.value.trim(),
         id: id,
         date: DateTime,
       };

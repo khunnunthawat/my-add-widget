@@ -20,6 +20,7 @@ export default function WidgetContent() {
   const [modalActiveTimer, setModalActiveTimer] = useState(false);
 
   const [titleJustsay, setTitleJustsay] = useState('');
+  const [addCounter, setCouter] = useState('');
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
   const handleClickMenu = function () {
@@ -35,6 +36,7 @@ export default function WidgetContent() {
   const handleClickCounter = function () {
     setModalActiveMenu(false);
     setModalActiveCounter(true);
+    setCouter();
   };
 
   const handleClickTimer = function () {
@@ -84,6 +86,13 @@ export default function WidgetContent() {
     }
   };
 
+  // const handleCounter = function () {
+  //   if (listAllWidgets.length > 0) {
+  //     console.log(listAllWidgets);
+  //     return <Counter title={addCounter} listAllWidgets={listAllWidgets} />;
+  //   }
+  // };
+
   let iconTool = 'inline-block text-xl relative -top-0.5';
   let iconClass = 'mx-auto text-4xl';
 
@@ -100,6 +109,7 @@ export default function WidgetContent() {
           </Btn>
         </div>
         <>{handleTitleJustsay()}</>
+        {/* <>{handleCounter()}</> */}
 
         {modalActiveMenu && (
           <ModalCard onCancel={handleCancel}>
@@ -131,7 +141,14 @@ export default function WidgetContent() {
         )}
         {modalActiveCounter && (
           <ModalCard onCancel={handleCancel}>
-            <FormCounter></FormCounter>
+            <FormCounter
+              setCouter={setCouter}
+              handleCounter={handleCounter}
+              handleCancel={handleCancel}
+              listAllWidgets={listAllWidgets}
+              setListAllWidgets={setListAllWidgets}
+              DateTime={DateTime}
+            />
           </ModalCard>
         )}
         {modalActiveTimer && (
