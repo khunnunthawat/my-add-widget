@@ -51,7 +51,7 @@ export default function WidgetContent() {
     handleCancel();
 
     let id;
-    
+
     if (listAllWidgets.length == 0) {
       id = 1;
     } else {
@@ -63,9 +63,9 @@ export default function WidgetContent() {
       value: '',
       id: id,
       date: DateTime,
-      type: 'timer'
+      type: 'timer',
     };
-    
+
     setListAllWidgets([...listAllWidgets, data]);
   };
 
@@ -120,10 +120,26 @@ export default function WidgetContent() {
   let iconClass = 'mx-auto text-4xl';
   let flexClass = 'md:flex md:flex-wrap md:-mr-4';
 
+  // Clear widget
   const clearWidgets = () => {
     // clear all history
     setListAllWidgets([]);
   };
+
+  let colorTool = false;
+
+  let clearBtn = (
+    <Btn onClick={clearWidgets} colorTool={colorTool}>
+      <BiBomb className={`${iconTool}`} /> Clear all
+    </Btn>
+  );
+  if (listAllWidgets.length > 0) {
+    clearBtn = (
+      <Btn onClick={clearWidgets} colorTool={!colorTool}>
+        <BiBomb className={`${iconTool}`} /> Clear all
+      </Btn>
+    );
+  }
 
   return (
     <>
@@ -133,10 +149,10 @@ export default function WidgetContent() {
           <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
           </Btn>{' '}
-          <Btn onClick={clearWidgets} color='danger'>
+          {clearBtn}
+          {/* <Btn onClick={clearWidgets} color='danger'>
             <BiBomb className={`${iconTool}`} /> Clear all
-          </Btn>
-          {/* {clearWidgetsTool} */}
+          </Btn> */}
         </div>
         <div className={`${flexClass}`}>{handleAddWidgets()}</div>
 
